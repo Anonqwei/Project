@@ -59,11 +59,6 @@ def handle_key_error(error):
 def not_found_error(error): 
     return redirect(url_for('home'))
 
-@app.errorhandler(KeyError)
-def handle_key_error(error): #this will make sure when there is a KeyError, it will call the handle_key_error function to handle the error and return a JSON response with an error message and a 500 status code, indicating that there was an internal server error due to a missing API field in the response.
-    return {
-        "error": f"Missing API field: {error}"
-    }, 500
 
 @app.errorhandler(requests.exceptions.RequestException) #this will make sure when there is a RequestException error, it will call the handle_request_error function to handle the error and return a JSON response with an error message and a 503 status code, indicating that the weather service is unavailable.
 def handle_request_error(error):
