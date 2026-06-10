@@ -1,7 +1,6 @@
 
 from flask import Flask, abort, redirect, render_template, request, url_for
 from io import StringIO #
-import pandas as pd
 import json
 import requests
 app = Flask(__name__, template_folder='Template') #this will create a Flask application instance and specify the folder where the HTML templates are located. In this case, it is set to 'Template', which means the application will look for HTML files in the 'Template' directory when rendering templates.
