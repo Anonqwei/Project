@@ -1,0 +1,32 @@
+body {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:greenyellow;
+  color:blue;
+  margin:0;
+  padding:10px;
+}
+h1 {
+  font-family: 'Times New Roman', serif;
+  font: size 3px;0px;
+  margin-bottom:10px;
+}
+p {
+  text-align: justify;
+  color: blue;
+  font-family: 'Times New Roman', serif;
+  font-size:16px;
+  margin:5px 0; 
+}
+table {
+  width:100%;
+  border-collapse: collapse;
+  margin-top:10px;
+}
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-neutral-900: #0f172a;
+}
+.hero { background: greenyellow; color: #86e27e; }
+.hero h1 { color: #2563eb; }

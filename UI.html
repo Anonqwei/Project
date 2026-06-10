@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='UI_beauty.css') }}"> <!--This will apply the CSS styling to the HTML elements.-->
+</head>
+<body>
+<h1>Weather Forecast</h1>
+<p>Welcome to the Weather Forecast application! This application allows you to get the weather forecast for any location by entering its latitude and longitude. Simply input the coordinates of the location you want to check, and you'll receive a detailed weather forecast for that area.</p>
+<p><strong>Warning:</strong> Please ensure that the latitude and longitude values are valid, or the application may not display the correct weather information/ show any information.</p>
+<!--This form allows users to input latitude and longitude values to search for weather forecasts.-->
+<form method="POST">
+    <label>Latitude:</label>
+    <input type="text" name="lat">
+
+    <label>Longitude:</label>
+    <input type="text" name="lon">
+
+    <button type="submit">Search</button>
+</form>
+
+
+<!--If the periods variable is not None, it will display the weather forecast and alerts for the specified location.-->
+{% if periods %}
+<h1>Weather + Alert for {{ city }}, {{ state }}</h1>
+
+{% if alerts %}
+    <h2>---⚠️ Active Alerts ⚠️---</h2>
+    <ul>
+    {% for alert in alerts %}
+        <li>
+            <strong>{{ alert.event }}</strong><br>
+            {{ alert.headline }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %} <!--If there are no active alerts, it will display a message indicating that there are no active weather alerts.-->
+    <p>No active weather alerts.</p>
+{% endif %}
+<h1>Current Forecast</h1>
+
+<p>Current weather forecast: {{ current.shortForecast }}</p>
+<p>Current temperature: {{ current.temperature }}°{{ current.temperatureUnit }}</p>
+<p>Wind Speed: {{ current.windSpeed }} {{ current.windDirection }}</p>
+
+<hr>
+<h1>Upcoming Forecast</h1>
+<table border="1"> <!--This table will display the upcoming weather forecast for the specified location.-->
+    <tr>
+        <th>Period</th>
+        <th>Temperature</th>
+        <th>Forecast</th>
+    </tr>
+
+    {% for day in periods %}
+    <tr>
+        <td>{{ day.name }}</td>
+        <td>{{ day.temperature }}°{{ day.temperatureUnit }}</td>
+        <td>{{ day.shortForecast }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endif %}
+<!--This button will navigate the user back to the home page of the application, allowing them to enter new latitude and longitude values or view the weather forecast again.-->
+<a href="{{ url_for('home') }}"> 
+    <button type="button">Home/ Reset page</button>
+</a>
+
+</body>
+</html>
